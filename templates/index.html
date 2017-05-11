@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>time sheet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/static/libs/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/timesheet.css">
+	<script type="text/javascript" src="/static/libs/js/angular.min.js"></script>
+	<script type="text/javascript" src="/static/js/apps.js"></script>
+	<script type="text/javascript" src="/static/js/controllers.js"></script>
+
+</head>
+<body ng-app="timesheetApp" ng-controller="timesheetCtrl">
+<div ng-include="'/static/pages/header.html'"></div>
+<div class="container">
+		<div class = "rule">
+			<pre>规定时间：上班：<span ng-bind="timeRange.officeTime | limitTo:5"></span>  下班：<span ng-bind="timeRange.closingTime|limitTo:5"></span>  加班：<span ng-bind="timeRange.addTime|limitTo:5"></span></pre>
+		</div>
+		<div class="search-btn">
+			<input type="file" id="file1" accept=".xls,.xlsx" style="display:inline-block;"/>
+			<button class="btn btn-default" id="btn1" ng-click="getTimesheet()">一键查询</button>
+		</div>
+		<div class="content">
+			<table class="table table-bordered text-center table-responsive" style="white-space:nowrap">
+				<thead class="text-center">
+				<th>公司名</th>
+				<th>区域</th>
+				<th>产品线</th>
+				<th>子产品线</th>
+				<th>工号</th>
+				<th>姓名</th>
+				<th>工作天数(天)</th>
+				<th>迟到次数（次）</th>
+				<th>迟到工时（h）</th>
+				<th>早退次数（次）</th>
+				<th>早退工时（h）</th>
+				<th>加班工时（h）</th>
+				<th>未打卡（次）</th>
+				<th>详情</th>
+				</thead>
+				<tbody>
+				<tr ng-repeat="item in timesheet">
+					<td ng-bind="item.company_name"></td>
+					<td ng-bind="item.area"></td>
+					<td ng-bind="item.product_line"></td>
+					<td ng-bind="item.product_line_second"></td>
+					<td ng-bind="item.job_number"></td>
+					<td ng-bind="item.name"></td>
+					<td ng-bind="item.count"></td>
+					<td ng-bind="item.late_times" ng-class = "item.late_times > 0 ? 'danger':''"></td>
+					<td ng-bind="item.late_time"></td>
+					<td ng-bind="item.quit_times" ng-class = "item.quit_times > 0 ? 'danger':''"></td>
+					<td ng-bind="item.quit_time"></td>
+					<td ng-bind="item.add_time" ng-class = "item.add_time > 0 ? 'info':''"></td>
+					<td ng-bind="item.nci" ng-class="item.nci > 0 ? 'danger':''"></td>
+					<td><a href="#" ng-click="jumptoDetail(item.job_number)">查看</a></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<div class="right-bar container">
+	<div class="row">
+
+		<div class="right-bar-content">
+			<ul class="list-unstyled">
+			<li>
+				<label for="officeTime">上班时间</label>
+				<select id="officeTime" ng-model="timeRange.officeTime">
+					<option value="08:00:59.0">08:00</option>
+					<option value="08:30:59.0">08:30</option>
+					<option value="09:00:59.0">09:00</option>
+					<option value="09:30:59.0">09:30</option>
+				</select>
+			</li>
+			<li>
+				<label for="closingTime">下班时间</label>
+				<select id="closingTime" ng-model="timeRange.closingTime">
+					<option value="17:30:00.0">17:30</option>
+					<option value="18:00:00.0">18:00</option>
+					<option value="18:30:00.0">18:30</option>
+				</select>
+			</li>
+			<li>
+				<label for="addTime">加班时间</label>
+				<select id="addTime" ng-model="timeRange.addTime">
+					<option value="19:00:00.0">19:00</option>
+					<option value="19:30:00.0">19:30</option>
+					<option value="20:00:00.0">20:00</option>
+				</select>
+			</li>
+			</ul>
+		</div>
+		<div class="right-bar-tip">调整上下班时间</div>
+	</div>
+</div>
+<footer></footer>
+</body>
+</html>

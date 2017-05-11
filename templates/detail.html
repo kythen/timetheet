@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/libs/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/timesheet.css">
+
+</head>
+<body ng-app="detailApp" ng-controller="detailCtrl">
+<div ng-include="'/static/pages/header.html'"></div>
+<div class="employee-info container">
+    <div class="row">
+        <div class="col-sm-6">
+            <span class="h4">工号：<span ng-bind="detail.job_number"></span></span><br />
+            <span class="h4">姓名：<span ng-bind="detail.name"></span></span>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <img src="/static/img/pinkbox.png" /><span>迟到/早退</span>
+                <img src="/static/img/yellowbox.png" /><span>加班</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<table class="table table-bordered" >
+    <thead>
+    <th>上班时间</th>
+    <th>下班时间</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat = "item in detail.info">
+
+        <td ng-bind="item.office_time"  ng-class="timeCompare(item.office_time,'am')" ></td>
+        <td ng-bind="item.closing_time" ng-class="timeCompare(item.closing_time,'pm')" ></td>
+
+    </tr>
+    </tbody>
+</table>
+<script src="/static/libs/js/angular.min.js"></script>
+<script src="/static/js/apps.js"></script>
+<script src="/static/js/controllers.js"></script>
+</body>
+</html>

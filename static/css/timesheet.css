@@ -1,0 +1,56 @@
+	.warning{
+		background:orange;
+		}
+		.info{
+		background:oliver;
+		}
+		div.search-btn{
+		margin:1em
+		}
+		div.header{
+		background:#D71A21;
+		min-height:60px;
+		}
+		div.header img{
+		margin-top:15px;
+		}
+		div.right-bar{
+		height:200px;
+		position:absolute;
+		top:50%;
+		left:-170px;
+		margin-top:-100px;
+		width:200px;
+		transition:left .5s linear;
+		opacity:.8
+		}
+		div.right-bar .right-bar-tip{
+
+		background:black;
+		color:#fff;
+		position:absolute;
+		right:0;
+		top:0;
+		width:30px;
+
+		}
+		div.right-bar .right-bar-content{
+		max-width:150px;
+		background:#f3f3f3;
+		margin-right:0
+		}
+		div.right-bar:hover{
+		left:10px;
+		transition:left .5s linear;
+		}
+		div.employee-info{
+		margin:1em;
+		}
+		  .bad{
+        background:#EC7070;
+
+        }
+        .well{
+        background:#F3F9A1;
+
+        }
